@@ -7,8 +7,10 @@ const StreamList = ({threadList, users, selectThread}) => {
                 <h3>Channels</h3>
                 <ul>
                     <li onClick={() => selectThread('react')}>#react</li>
-                    <li>#redux</li>
-                    <li>#webpack</li>
+                    <li onClick={() => selectThread('redux')}>#redux</li>
+                    <li onClick={() => selectThread('webpack')}>#webpack</li>
+                    
+                    
                 </ul>
             </section>
             <section>

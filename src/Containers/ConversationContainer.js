@@ -5,7 +5,9 @@ import {messages} from '../data/messages'
 class ConversationContainer extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            messages: {}
+        }
     }
 
     
@@ -18,23 +20,30 @@ class ConversationContainer extends Component {
 
 
     */
-    componentWillMount() {
-        console.log('getting msgs....');
-        console.log(this.props.selectedThread);
-        // simulate an ajax call
-        return setTimeout(() => {
-            this.setState({
-                messages: messages[this.props.selectedThread]
-            })
-        }, 600)
+    componentWillReceiveProps({selectedThread}){
+        // check if state already has it
+        if(!(selectedThread in this.state.messages)){
+            // fetch it
+            // set stateclog
+            console.log('fetching ' + selectedThread);
+            
+            this.setState(Object.assign({}, this.state, {
+                messages: {
+                    ...this.state.messages,
+                    [selectedThread]: messages[selectedThread]
+                }
+            }))
+        }
+     
     }
+
     render() {
         const {selectedThread} = this.props;
         return (
             <div>
             {
                 this.state.messages && 
-                <Conversation selectedThread={selectedThread} messages={this.state.messages}/>
+                <Conversation selectedThread={selectedThread} messages={this.state.messages[selectedThread]}/>
             }    
             </div>
         )
