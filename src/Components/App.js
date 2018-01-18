@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
-
-
 import AddMessage from './AddMessage'
 import ThreadListContainer from '../Containers/ThreadListContainer'
 import ConversationContainer from '../Containers/ConversationContainer'
@@ -20,17 +18,13 @@ class App extends Component {
     this.setState({ selectedThread: thread })
   }
 
-
   render() {
     const { messages, users, selectedThread } = this.state
     return (
       <div className="app">
         <Header />
         <ThreadListContainer selectThread={this.selectThread} selectedThread={selectedThread} />
-
         <ConversationContainer selectedThread={selectedThread} users={users} messages={messages} />
-
-
         <Footer />
       </div>
     );

@@ -11,16 +11,6 @@ class ConversationContainer extends Component {
         }
     }
 
-
-    /*
-
-
-    need to determine which messages to show,
-    depending on which stream is selected.
-
-
-
-    */
     componentWillReceiveProps({ selectedThread }) {
         // check if state already has it
         if (!(selectedThread in this.state.messages)) {
@@ -36,12 +26,20 @@ class ConversationContainer extends Component {
                 }
             }))
         }
-
     }
 
-    onAddMessage = (text) => {
-        console.log({text});
-        
+    onAddMessage = (e, text) => {
+        const { selectedThread } = this.props;
+
+        e.preventDefault();
+        console.log({ text });
+        // add message to message DB, or in this case our state
+        const nextState = { ...this.state }
+        nextState.messages[selectedThread].push({
+            text
+        })
+        this.setState({ nextState })
+        e.target.reset()
     }
 
     render() {
@@ -50,14 +48,9 @@ class ConversationContainer extends Component {
             <div>
                 {
                     selectedThread != null &&
-                    
-
-                        <Conversation selectedThread={selectedThread} messages={this.state.messages[selectedThread]}>
-                            <AddMessage onAddMessage={this.onAddMessage}/>
-                        
-                        </Conversation>
-                        
-                    
+                    <Conversation selectedThread={selectedThread} messages={this.state.messages[selectedThread]}>
+                        <AddMessage onAddMessage={this.onAddMessage} />
+                    </Conversation>
                 }
             </div>
         )

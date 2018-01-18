@@ -1,10 +1,10 @@
 import React from 'react'
 
-const AddMessage = (props) => {
+const AddMessage = ({onAddMessage}) => {
     return (
-        <footer>
+        <footer onSubmit={(e) => onAddMessage(e, this.textInput.value)}>
             <form>
-                <input type="text" />
+                <input ref={input => this.textInput = input }type="text" />
                 <button>Send</button>
             </form>
         </footer>
