@@ -12,14 +12,11 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      messages: {},
-      users: [],
       selectedThread: null
     }
   }
 
   selectThread = (thread) => {
-    console.log({thread});
     this.setState({selectedThread: thread})
   }
 
