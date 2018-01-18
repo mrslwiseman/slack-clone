@@ -3,7 +3,7 @@ import '../styles/App.css';
 
 
 import AddMessage from './AddMessage'
-import ThreadList from './ThreadList'
+import ThreadListContainer from '../Containers/ThreadListContainer'
 import ConversationContainer from '../Containers/ConversationContainer'
 import Header from './Header'
 import Footer from './Footer'
@@ -29,11 +29,10 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <ThreadList selectThread={this.selectThread} users={users} selectedThread={selectedThread}/>
-        {
-          selectedThread && 
+        <ThreadListContainer selectThread={this.selectThread} selectedThread={selectedThread}/>
+        
           <ConversationContainer selectedThread={selectedThread} users={users} messages={messages}/>
-        }
+        
         
         <Footer />
       </div>
