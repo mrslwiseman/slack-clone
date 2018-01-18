@@ -42,7 +42,7 @@ class ConversationContainer extends Component {
         return (
             <div>
             {
-                this.state.messages && 
+                selectedThread != null && 
                 <Conversation selectedThread={selectedThread} messages={this.state.messages[selectedThread]}/>
             }    
             </div>
