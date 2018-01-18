@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Conversation from '../Components/Conversation'
-import {messages} from '../data/messages'
+import AddMessage from '../Components/AddMessage'
+import { messages } from '../data/messages'
 
 class ConversationContainer extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class ConversationContainer extends Component {
         }
     }
 
-    
+
     /*
 
 
@@ -20,13 +21,14 @@ class ConversationContainer extends Component {
 
 
     */
-    componentWillReceiveProps({selectedThread}){
+    componentWillReceiveProps({ selectedThread }) {
         // check if state already has it
-        if(!(selectedThread in this.state.messages)){
-            // fetch it
+        if (!(selectedThread in this.state.messages)) {
+            // make connection to db
+            // fetch selectedThread messages
             // set stateclog
             console.log('fetching ' + selectedThread);
-            
+
             this.setState(Object.assign({}, this.state, {
                 messages: {
                     ...this.state.messages,
@@ -34,17 +36,29 @@ class ConversationContainer extends Component {
                 }
             }))
         }
-     
+
+    }
+
+    onAddMessage = (text) => {
+        console.log({text});
+        
     }
 
     render() {
-        const {selectedThread} = this.props;
+        const { selectedThread } = this.props;
         return (
             <div>
-            {
-                selectedThread != null && 
-                <Conversation selectedThread={selectedThread} messages={this.state.messages[selectedThread]}/>
-            }    
+                {
+                    selectedThread != null &&
+                    
+
+                        <Conversation selectedThread={selectedThread} messages={this.state.messages[selectedThread]}>
+                            <AddMessage onAddMessage={this.onAddMessage}/>
+                        
+                        </Conversation>
+                        
+                    
+                }
             </div>
         )
     }

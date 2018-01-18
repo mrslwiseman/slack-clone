@@ -1,11 +1,10 @@
 import React from 'react'
-import AddMessage from '../Components/AddMessage'
 import Message from './Message'
 
 import PropTypes from 'prop-types'
 
 
-const Conversation = ({messages, selectedThread}) => {
+const Conversation = ({messages, selectedThread, children}) => {
 
     const renderMessageList = () => {
         return messages.map(msg => {
@@ -25,9 +24,8 @@ const Conversation = ({messages, selectedThread}) => {
                     messages && renderMessageList()
                 }
                 
-
+{children}
             </section>
-            <AddMessage />
         </main>
     )
 }

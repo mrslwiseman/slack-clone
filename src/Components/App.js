@@ -9,7 +9,7 @@ import Header from './Header'
 import Footer from './Footer'
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       selectedThread: null
@@ -17,20 +17,20 @@ class App extends Component {
   }
 
   selectThread = (thread) => {
-    this.setState({selectedThread: thread})
+    this.setState({ selectedThread: thread })
   }
 
 
   render() {
-    const {messages, users, selectedThread} = this.state
+    const { messages, users, selectedThread } = this.state
     return (
       <div className="app">
         <Header />
-        <ThreadListContainer selectThread={this.selectThread} selectedThread={selectedThread}/>
-        
-          <ConversationContainer selectedThread={selectedThread} users={users} messages={messages}/>
-        
-        
+        <ThreadListContainer selectThread={this.selectThread} selectedThread={selectedThread} />
+
+        <ConversationContainer selectedThread={selectedThread} users={users} messages={messages} />
+
+
         <Footer />
       </div>
     );
