@@ -32,12 +32,14 @@ class ConversationContainer extends Component {
         const { selectedThread } = this.props;
 
         e.preventDefault();
-        console.log({ text });
         // add message to message DB, or in this case our state
         const nextState = { ...this.state }
-        nextState.messages[selectedThread].push({
-            text
-        })
+        // if the stream is new, with no messages
+        if (!nextState.messages[selectedThread]) {
+            // we need to create the stream messages array in messages obj.
+            nextState.messages[selectedThread] = []
+        }
+        nextState.messages[selectedThread].push({text})
         this.setState({ nextState })
         e.target.reset()
     }
